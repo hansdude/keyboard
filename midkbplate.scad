@@ -38,27 +38,34 @@ key_x=14;
 
 //                [middle2, 21.5],
 //                [middle2, 40.25],
-spacing=18.75;
-middle1=140;
-middle2=149.5;
-middle3=145;
-middle4=135.25;
+spacing=19;
+// middle1=140;
+// middle2=149.5;
+// middle3=145;
+// middle4=135.25;
+middle1=138;
+middle2=147.5;
+middle3=143;
+middle4=133.25;
 module keyboard_half(paths) {
 //TODO
     scale(1.005*positive)
     difference() {
-        import("keyboard.stl");
+        // import("keyboard.stl");
+        translate(95.25*Y) linear_extrude(height=1.5) {
+            import("AI03Plate2.dxf");
+        }
 //        color("#aaa", .25) %
         translate(-epsilon*Z) linear_extrude(height=1.5+2*epsilon) {
             polygon(
                 points = [
                     [middle1, -1],
-                    [middle1, 40.25],
-                    [middle2, 40.25],
-                    [middle2, 40.25+spacing],
-                    [middle3, 40.25+spacing],
-                    [middle3, 40.25+spacing+spacing],
-                    [middle4, 40.25+spacing+spacing],
+                    [middle1, 38.25],
+                    [middle2, 38.25],
+                    [middle2, 38.25+spacing],
+                    [middle3, 38.25+spacing],
+                    [middle3, 38.25+spacing+spacing],
+                    [middle4, 38.25+spacing+spacing],
                     [middle4, 101],
                     [291, 101],
                     [291, -1],
@@ -70,8 +77,8 @@ module keyboard_half(paths) {
         }
     }
 }
-//keyboard_half([[for(i=[0:9]) i]]);
-intersection() {
-    keyboard_half([[for(i=[0:7]) i, 10, 11]]);
-    translate([145, 0, 0]) rect(size=[45, 22, 10], octant=X+Y);
-}
+keyboard_half([[for(i=[0:9]) i]]);
+//intersection() {
+    // keyboard_half([[for(i=[0:7]) i, 10, 11]]);
+    //translate([145, 0, 0]) rect(size=[45, 22, 10], octant=X+Y);
+//}
